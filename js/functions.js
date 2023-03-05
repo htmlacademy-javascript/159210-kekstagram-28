@@ -2,6 +2,8 @@ function checkStringLength(string, maxLength) {
   return (string.length <= maxLength);
 }
 
+checkStringLength('проверяемая строка', 20);
+
 function checkStringPalindrom(string) {
   const halfLength = string.length % 2 ? (string.length - 1) / 2 : string.length / 2;
   let isPalindrom;
@@ -16,6 +18,8 @@ function checkStringPalindrom(string) {
   return isPalindrom;
 }
 
+checkStringPalindrom('топот');
+
 function extractNumbers(string) {
   const pattern = /\d+/g;
   let onlyNumbers = '';
@@ -29,10 +33,10 @@ function extractNumbers(string) {
   return onlyNumbers === '' ? NaN : Number(onlyNumbers);
 }
 
+extractNumbers('2023 год');
+
 function addToString(startString, endStringLength, addSymbol) {
-  console.log(startString, endStringLength, addSymbol);
   if (startString.length < endStringLength) {
-    console.log(startString.length + ' is less or equal to ' + endStringLength);
     const difLength = endStringLength - startString.length;
     const addStringLength = addSymbol.length;
     let endString;
@@ -45,9 +49,7 @@ function addToString(startString, endStringLength, addSymbol) {
         return endString;
       }
     } else {
-      console.log('add string length is ' + addStringLength);
       const newAddString = addSymbol.slice(0, difLength);
-      console.log('new add string is ' + newAddString);
       endString = newAddString + startString;
       return endString;
     }
@@ -56,3 +58,4 @@ function addToString(startString, endStringLength, addSymbol) {
   }
 }
 
+addToString('1', 2, '0');
