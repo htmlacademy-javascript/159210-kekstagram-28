@@ -6,6 +6,8 @@ const LIKES_MIN = 15;
 
 const LIKEX_MAX = 200;
 
+const COMMENTS_MAX = 5;
+
 const FIRST_WORDS = [
   'Зелёный',
   'Кровожадный',
@@ -102,11 +104,22 @@ const getCommentsArray = (count) => {
   return newArray;
 };
 
-const createPost = (count, commentsCount) => ({
-  id: postIdArray[count],
-  url: `photos/${postIdArray[count]}.jpg`,
+const createPost = (postCount) => ({
+  id: postIdArray[postCount],
+  url: `photos/${postIdArray[postCount]}.jpg`,
   description: `${getRandomArrayElement(FIRST_WORDS)} ${getRandomArrayElement(SECOND_WORDS)}`,
   likes: getRandomInteger(LIKES_MIN, LIKEX_MAX),
-  comments: getCommentsArray(getRandomInteger(1, commentsCount))
+  comments: getCommentsArray(getRandomInteger(1, COMMENTS_MAX))
 });
 
+const createPostArray = () => {
+  const newArray = [];
+
+  for (let i = 0; i < POST_ID_COUNT; i++) {
+    newArray.push(createPost(i));
+  }
+
+  return newArray;
+};
+
+createPostArray();
