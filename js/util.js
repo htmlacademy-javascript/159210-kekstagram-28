@@ -1,3 +1,12 @@
+const getRandomInteger = (a, b) => {
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
 function checkStringLength(string, maxLength) {
   return (string.length <= maxLength);
 }
@@ -24,7 +33,7 @@ function extractNumbers(string) {
   const pattern = /\d+/g;
   let onlyNumbers = '';
 
-  for (let i = 0; i < string.length; i ++) {
+  for (let i = 0; i < string.length; i++) {
     if (string[i].match(pattern)) {
       onlyNumbers += string[i];
     }
@@ -59,3 +68,5 @@ function addToString(startString, endStringLength, addSymbol) {
 }
 
 addToString('1', 2, '0');
+
+export { getRandomInteger, getRandomArrayElement };
