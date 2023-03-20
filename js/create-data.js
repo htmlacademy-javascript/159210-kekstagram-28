@@ -6,7 +6,7 @@ const COMMENT_ID_COUNT = 100;
 
 const LIKES_MIN = 15;
 
-const LIKEX_MAX = 200;
+const LIKES_MAX = 200;
 
 const COMMENTS_MAX = 5;
 
@@ -101,7 +101,7 @@ const createPost = (postCount) => ({
   id: postIdArray[postCount],
   url: `photos/${postIdArray[postCount]}.jpg`,
   description: `${getRandomArrayElement(FIRST_WORDS)} ${getRandomArrayElement(SECOND_WORDS)}`,
-  likes: getRandomInteger(LIKES_MIN, LIKEX_MAX),
+  likes: getRandomInteger(LIKES_MIN, LIKES_MAX),
   comments: getCommentsArray(getRandomInteger(1, COMMENTS_MAX))
 });
 
