@@ -115,4 +115,4 @@ const createPostArray = () => {
   return newArray;
 };
 
-createPostArray();
+export { createPostArray };
