@@ -7,11 +7,11 @@ const picTemplate = document.querySelector('#picture')
 
 const posts = createPostArray();
 
-posts.forEach((post) => {
+posts.forEach(({url, likes, comments}) => {
   const picElement = picTemplate.cloneNode(true);
-  picElement.querySelector('.picture__img').src = post.url;
-  picElement.querySelector('.picture__likes').textContent = post.likes;
-  picElement.querySelector('.picture__comments').textContent = post.comments.length;
+  picElement.querySelector('.picture__img').src = url;
+  picElement.querySelector('.picture__likes').textContent = likes;
+  picElement.querySelector('.picture__comments').textContent = comments.length;
   picsContainer.appendChild(picElement);
 });
 
