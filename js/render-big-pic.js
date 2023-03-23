@@ -1,7 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { posts } from './create-miniatures.js';
 
-const pictures = document.querySelectorAll('.picture');
+const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
@@ -60,10 +60,8 @@ function closeBigPic() {
   bigPicture.querySelector('.cancel').removeEventListener('click', onMouseClose);
 }
 
-pictures.forEach((picture) => {
-  picture.addEventListener('click', (evt) => {
-    const url = String(evt.target.src).slice(String(evt.target.src).indexOf('photos'));
-    const thisPost = posts.filter((post) => post.url === url)[0];
-    openBigPic(thisPost);
-  });
+pictures.addEventListener('click', (evt) => {
+  const url = String(evt.target.src).slice(String(evt.target.src).indexOf('photos'));
+  const thisPost = posts.filter((post) => post.url === url)[0];
+  openBigPic(thisPost);
 });
