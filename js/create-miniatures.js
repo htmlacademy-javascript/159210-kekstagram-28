@@ -15,3 +15,4 @@ posts.forEach(({url, likes, comments}) => {
   picsContainer.appendChild(picElement);
 });
 
+export { posts };
