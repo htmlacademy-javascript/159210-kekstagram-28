@@ -69,4 +69,6 @@ function addToString(startString, endStringLength, addSymbol) {
 
 addToString('1', 2, '0');
 
-export { getRandomInteger, getRandomArrayElement };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export { getRandomInteger, getRandomArrayElement, isEscapeKey };
