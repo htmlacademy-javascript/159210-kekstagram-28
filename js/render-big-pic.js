@@ -3,11 +3,14 @@ import { posts } from './create-miniatures.js';
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
+const social = bigPicture.querySelector('.social');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
 const commentsCount = bigPicture.querySelector('.comments-count');
 const allComments = bigPicture.querySelector('.social__comments');
 const descriptionPhoto = bigPicture.querySelector('.social__caption');
+const socialCommentCount = social.querySelector('.social__comment-count');
+const commentsLoader = social.querySelector('.comments-loader');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -47,7 +50,11 @@ const renderBigPic = ({url, likes, comments, description}) => {
 function openBigPic(url) {
   renderBigPic(url);
 
+  socialCommentCount.classList.add('hidden');
+  commentsLoader.classList.add('hidden');
+
   bigPicture.classList.remove('hidden');
+  document.body.classList.add('modal-open');
 
   document.addEventListener('keydown', onDocumentKeydown);
   bigPicture.querySelector('.cancel').addEventListener('click', onMouseClose);
@@ -55,13 +62,16 @@ function openBigPic(url) {
 
 function closeBigPic() {
   bigPicture.classList.add('hidden');
+  document.body.classList.remove('modal-open');
 
   document.removeEventListener('keydown', onDocumentKeydown);
   bigPicture.querySelector('.cancel').removeEventListener('click', onMouseClose);
 }
 
 pictures.addEventListener('click', (evt) => {
-  const url = String(evt.target.src).slice(String(evt.target.src).indexOf('photos'));
-  const thisPost = posts.filter((post) => post.url === url)[0];
-  openBigPic(thisPost);
+  if(evt.target.closest('.picture')) {
+    const url = String(evt.target.src).slice(String(evt.target.src).indexOf('photos'));
+    const thisPost = posts.filter((post) => post.url === url)[0];
+    openBigPic(thisPost);
+  }
 });
