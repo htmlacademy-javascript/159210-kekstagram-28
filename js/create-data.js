@@ -8,7 +8,7 @@ const LIKES_MIN = 15;
 
 const LIKES_MAX = 200;
 
-const COMMENTS_MAX = 5;
+const COMMENTS_MAX = 15;
 
 const FIRST_WORDS = [
   'Зелёный',
