@@ -8,10 +8,15 @@ const hashtagsField = imgUploadForm.querySelector('.text__hashtags');
 const descriptionField = imgUploadForm.querySelector('.text__description');
 // const imgUploadPreview = imgUploadForm.querySelector('.img-upload__preview img');
 
-const pristine = new Pristine(imgUploadForm);
+const pristine = new Pristine(imgUploadForm, {
+  classTo: 'img-upload__field-wrapper',
+  errorTextParent: 'img-upload__field-wrapper',
+  errorTextTag: 'p',
+  errorTextClass: 'input__inner'
+});
 
-pristine.addValidator(hashtagsField, validateHashtags);
-pristine.addValidator(descriptionField, validateComment);
+pristine.addValidator(hashtagsField, validateHashtags, 'Хэштег или список хэштегов не соответствует правилам');
+pristine.addValidator(descriptionField, validateComment, 'Длина комментария не может быть больше 140 символов');
 
 function validateHashtags(value) {
   if (!value) {
