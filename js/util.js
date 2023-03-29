@@ -71,4 +71,9 @@ addToString('1', 2, '0');
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getRandomInteger, getRandomArrayElement, isEscapeKey };
+function checkSameSubstring (value) {
+  const array = value.toLowerCase().split(/(\s+)/).filter((e) => e.trim().length > 0);
+  return array.some((e, i, arr) => arr.indexOf(e) !== i);
+}
+
+export { getRandomInteger, getRandomArrayElement, isEscapeKey, checkStringLength, checkSameSubstring };
