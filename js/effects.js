@@ -100,8 +100,7 @@ const changeEffectIntensity = (effect, value) => {
 effectList.addEventListener('click', (evt) => {
   if (evt.target.closest('[type="radio"]')) {
     const effect = evt.target.closest('[type="radio"]').value;
-    imgUploadPreview.className = '';
-    imgUploadPreview.classList.add(`effects__preview--${effect}`);
+    imgUploadPreview.className = `effects__preview--${effect}`;
     changeSliderRange(effect);
     changeSliderVisibility(effect);
     const thisEffect = EFFECTS.find((element) => element.name === effect);
