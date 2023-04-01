@@ -76,4 +76,5 @@ function checkSameSubstring (value) {
   return array.some((e, i, arr) => arr.indexOf(e) !== i);
 }
 
-export { getRandomInteger, getRandomArrayElement, isEscapeKey, checkStringLength, checkSameSubstring };
+export { getRandomInteger, getRandomArrayElement, isEscapeKey,
+  checkStringLength, checkSameSubstring };
