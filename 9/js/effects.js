@@ -94,7 +94,7 @@ const changeEffectIntensity = (effect, value) => {
   const thisEffect = EFFECTS.find((element) => element.name === effect);
   imgUploadPreview.style.filter = (thisEffect.name !== 'none') ?
     `${thisEffect.filter}(${value}${thisEffect.postfix})` :
-    `${thisEffect.name}`;
+    `${thisEffect.filter}`;
 };
 
 const resetEffects = (effect = DEFAULT_EFFECT.name) => {
