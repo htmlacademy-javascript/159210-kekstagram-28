@@ -92,19 +92,23 @@ const changeSliderRange = (effect) => {
 
 const changeEffectIntensity = (effect, value) => {
   const thisEffect = EFFECTS.find((element) => element.name === effect);
-  if (thisEffect.name !== 'none') {
-    imgUploadPreview.style.filter = `${thisEffect.filter}(${value}${thisEffect.postfix})`;
-  }
+  imgUploadPreview.style.filter = (thisEffect.name !== 'none') ?
+    `${thisEffect.filter}(${value}${thisEffect.postfix})` :
+    `${thisEffect.name}`;
+};
+
+const resetEffects = (effect = DEFAULT_EFFECT.name) => {
+  imgUploadPreview.className = `effects__preview--${effect}`;
+  changeSliderRange(effect);
+  changeSliderVisibility(effect);
+  const thisEffect = EFFECTS.find((element) => element.name === effect);
+  changeEffectIntensity(effect, thisEffect.max);
 };
 
 effectList.addEventListener('click', (evt) => {
   if (evt.target.closest('[type="radio"]')) {
     const effect = evt.target.closest('[type="radio"]').value;
-    imgUploadPreview.className = `effects__preview--${effect}`;
-    changeSliderRange(effect);
-    changeSliderVisibility(effect);
-    const thisEffect = EFFECTS.find((element) => element.name === effect);
-    changeEffectIntensity(effect, thisEffect.max);
+    resetEffects(effect);
   }
 });
 
@@ -113,9 +117,5 @@ effectLevelSlider.noUiSlider.on('update', () => {
   const thisEffect = imgUploadPreview.classList[0].split('--')[1];
   changeEffectIntensity(thisEffect, effectLevelValue.value);
 });
-
-const resetEffects = () => {
-  changeEffectIntensity(DEFAULT_EFFECT.name, DEFAULT_EFFECT.max);
-};
 
 export { resetEffects };
