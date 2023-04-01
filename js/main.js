@@ -3,3 +3,5 @@ import './create-data.js';
 import './create-miniatures.js';
 import './render-big-pic.js';
 import './form.js';
+import './effects.js';
+import './scale.js';
