@@ -1,5 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { posts } from './create-miniatures.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -80,6 +82,8 @@ const renderBigPic = ({url, likes, comments, description}) => {
 
 function openBigPic(url) {
   renderBigPic(url);
+  resetScale();
+  resetEffects();
 
   bigPicture.classList.remove('hidden');
   document.body.classList.add('modal-open');
