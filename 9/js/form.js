@@ -1,4 +1,6 @@
 import { isEscapeKey, checkStringLength, checkSameSubstring } from './util.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
 
 const imgUploadForm = document.querySelector('.img-upload__form');
 const uploadFileField = document.getElementById('upload-file');
@@ -63,6 +65,9 @@ const onMouseClose = (evt) => {
 function closeUploadForm() {
   imgUploadForm.reset();
   pristine.reset();
+  resetScale();
+  resetEffects();
+
   imgEditForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
