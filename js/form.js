@@ -6,7 +6,6 @@ const imgEditForm = imgUploadForm.querySelector('.img-upload__overlay');
 const imgUploadCancel = imgUploadForm.querySelector('.img-upload__cancel');
 const hashtagsField = imgUploadForm.querySelector('.text__hashtags');
 const descriptionField = imgUploadForm.querySelector('.text__description');
-// const imgUploadPreview = imgUploadForm.querySelector('.img-upload__preview img');
 
 const pristine = new Pristine(imgUploadForm, {
   classTo: 'img-upload__field-wrapper',
