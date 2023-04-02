@@ -1,4 +1,6 @@
 import { isEscapeKey, checkStringLength, checkSameSubstring } from './util.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
 
 const imgUploadForm = document.querySelector('.img-upload__form');
 const uploadFileField = document.getElementById('upload-file');
@@ -6,7 +8,6 @@ const imgEditForm = imgUploadForm.querySelector('.img-upload__overlay');
 const imgUploadCancel = imgUploadForm.querySelector('.img-upload__cancel');
 const hashtagsField = imgUploadForm.querySelector('.text__hashtags');
 const descriptionField = imgUploadForm.querySelector('.text__description');
-// const imgUploadPreview = imgUploadForm.querySelector('.img-upload__preview img');
 
 const pristine = new Pristine(imgUploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -64,6 +65,9 @@ const onMouseClose = (evt) => {
 function closeUploadForm() {
   imgUploadForm.reset();
   pristine.reset();
+  resetScale();
+  resetEffects();
+
   imgEditForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
