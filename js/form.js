@@ -1,6 +1,7 @@
 import { isEscapeKey, checkStringLength, checkSameSubstring } from './util.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
+import { sendData } from './api.js';
 
 const imgUploadForm = document.querySelector('.img-upload__form');
 const uploadFileField = document.getElementById('upload-file');
@@ -8,6 +9,39 @@ const imgEditForm = imgUploadForm.querySelector('.img-upload__overlay');
 const imgUploadCancel = imgUploadForm.querySelector('.img-upload__cancel');
 const hashtagsField = imgUploadForm.querySelector('.text__hashtags');
 const descriptionField = imgUploadForm.querySelector('.text__description');
+const imgUploadBtn = imgUploadForm.querySelector('.img-upload__submit');
+const openUploadFormBtn = document.querySelector('.img-upload__control');
+
+const modalCases = ['error', 'success'];
+
+const closeModal = (result) => {
+  document.querySelector(`.${result}`).remove();
+
+  document.removeEventListener('keydown', onDocumentKeydown);
+};
+
+const showModal = (result) => {
+  const modalTemplate = document.querySelector(`#${result}`)
+    .content.querySelector(`.${result}`);
+  const modalElement = modalTemplate.cloneNode(true);
+
+  document.body.appendChild(modalElement);
+
+  document.querySelector(`.${result}`).addEventListener('click', (evt) => {
+    if (!evt.target.classList.contains(`${result}__inner`)) {
+      closeModal(result);
+    }
+  });
+
+  document.addEventListener('keydown', onDocumentKeydown);
+};
+
+const onSuccess = () => {
+  closeUploadForm();
+  showModal('success');
+  openUploadFormBtn.classList.add('hidden');
+};
+const onError = () => showModal('error');
 
 const pristine = new Pristine(imgUploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -37,25 +71,55 @@ function validateComment(value) {
   return checkStringLength(value, 140);
 }
 
-imgUploadForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+const blockSubmitBtn = () => {
+  imgUploadBtn.disabled = true;
+};
 
-  const isValid = pristine.validate();
+const unblockSubmitBtn = () => {
+  imgUploadBtn.disabled = false;
+};
 
-  if (isValid) {
-    closeUploadForm();
-  }
-});
+const setUploadFormSubmit = () => {
+  imgUploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+
+    if (isValid) {
+      blockSubmitBtn();
+      sendData(new FormData(evt.target), onSuccess, onError)
+        .finally(unblockSubmitBtn);
+    }
+  });
+};
+
+setUploadFormSubmit(closeUploadForm);
 
 const isTextFieldsFocused = () => document.activeElement === hashtagsField ||
   document.activeElement === descriptionField;
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt) && !isTextFieldsFocused()) {
+const isModalOpen = (modalName) => {
+  const modal = document.querySelector(`.${modalName}`);
+
+  if (modal) {
+    return true;
+  }
+  return false;
+};
+
+
+function onDocumentKeydown(evt) {
+  if (isEscapeKey(evt) && !isTextFieldsFocused() && !isModalOpen('error')) {
     evt.preventDefault();
     closeUploadForm();
   }
-};
+
+  modalCases.forEach((modalCase) => {
+    if (isModalOpen(modalCase)) {
+      closeModal(modalCase);
+    }
+  });
+}
 
 const onMouseClose = (evt) => {
   evt.preventDefault();
