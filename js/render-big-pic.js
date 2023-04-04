@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { posts } from './create-miniatures.js';
+import { postsArray } from './create-miniatures.js';
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -107,7 +107,7 @@ function closeBigPic() {
 pictures.addEventListener('click', (evt) => {
   if(evt.target.closest('.picture')) {
     const url = String(evt.target.src).slice(String(evt.target.src).indexOf('photos'));
-    const thisPost = posts.filter((post) => post.url === url)[0];
+    const thisPost = postsArray.filter((post) => post.url === url)[0];
     commentsArray = thisPost.comments;
     openBigPic(thisPost);
   }
