@@ -1,30 +1,30 @@
 const BASE_URL = 'https://28.javascript.pages.academy/kekstagram';
-const Route = {
+const ROUTE = {
   GET_DATA: '/data',
   SEND_DATA: '/'
 };
-const Method = {
+const METHOD = {
   GET: 'GET',
   POST: 'POST'
 };
 
-const getDataErrorMessage = 'Не удалось загрузить данные. Попробуйте обновить страницу';
+const GET_DATA_ERROR_MESSAGE = 'Не удалось загрузить данные. Попробуйте обновить страницу';
 
-const load = (route, method = Method.GET, body = null) =>
+const load = (route, method = METHOD.GET, body = null) =>
   fetch(`${BASE_URL}${route}`, {method, body});
 
 const getData = (renderData, onError) =>
-  load(Route.GET_DATA)
+  load(ROUTE.GET_DATA)
     .then((response) => response.json())
     .then((data) => {
       renderData(data);
     })
     .catch(() => {
-      onError(getDataErrorMessage);
+      onError(GET_DATA_ERROR_MESSAGE);
     });
 
 const sendData = (body, onSuccess, onError) =>
-  load(Route.SEND_DATA, Method.POST, body)
+  load(ROUTE.SEND_DATA, METHOD.POST, body)
     .then((response) => {
       if (response.ok) {
         onSuccess();

@@ -10,7 +10,6 @@ const imgUploadCancel = imgUploadForm.querySelector('.img-upload__cancel');
 const hashtagsField = imgUploadForm.querySelector('.text__hashtags');
 const descriptionField = imgUploadForm.querySelector('.text__description');
 const imgUploadBtn = imgUploadForm.querySelector('.img-upload__submit');
-const openUploadFormBtn = document.querySelector('.img-upload__control');
 
 const modalCases = ['error', 'success'];
 
@@ -39,7 +38,6 @@ const showModal = (result) => {
 const onSuccess = () => {
   closeUploadForm();
   showModal('success');
-  openUploadFormBtn.classList.add('hidden');
 };
 const onError = () => showModal('error');
 
