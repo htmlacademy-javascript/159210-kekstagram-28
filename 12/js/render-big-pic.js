@@ -34,12 +34,21 @@ const renderComments = (count) => {
   for (let i = 0; i < count; i++) {
     const li = document.createElement('li');
     li.classList.add('social__comment');
-    li.innerHTML = `<img
-                        class="social__picture"
-                        src="${commentsArray[i].avatar}"
-                        alt="${commentsArray[i].name}"
-                        width="35" height="35">
-              <p class="social__text">${commentsArray[i].message}</p>`;
+
+    const img = document.createElement('img');
+    img.classList.add('social__picture');
+    img.src = `${commentsArray[i].avatar}`;
+    img.alt = `${commentsArray[i].name}`;
+    img.width = '35';
+    img.height = '35';
+
+    const p = document.createElement('p');
+    p.classList.add('social__text');
+    p.innerText = `${commentsArray[i].message}`;
+
+    li.appendChild(img);
+    li.appendChild(p);
+
     allComments.appendChild(li);
   }
 };
