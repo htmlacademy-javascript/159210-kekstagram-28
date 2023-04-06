@@ -8,16 +8,20 @@ const Method = {
   POST: 'POST'
 };
 
+let originalData;
+
 const GET_DATA_ERROR_MESSAGE = 'Не удалось загрузить данные. Попробуйте обновить страницу';
 
 const load = (route, method = Method.GET, body = null) =>
   fetch(`${BASE_URL}${route}`, {method, body});
 
-const getData = (renderData, onError) =>
+const getData = (renderData, onSuccess, onError) =>
   load(Route.GET_DATA)
     .then((response) => response.json())
     .then((data) => {
+      originalData = data;
       renderData(data);
+      onSuccess();
     })
     .catch(() => {
       onError(GET_DATA_ERROR_MESSAGE);
@@ -36,4 +40,4 @@ const sendData = (body, onSuccess, onError) =>
       onError();
     });
 
-export { getData, sendData };
+export { getData, sendData, originalData };
