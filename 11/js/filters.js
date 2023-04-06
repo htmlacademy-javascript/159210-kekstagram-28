@@ -9,18 +9,6 @@ const filtersBtns = imgFilters.querySelectorAll('.img-filters__button');
 const RERENDER_DELAY = 500;
 const COUNT_RENDER_RANDOM = 10;
 
-const showFilters = () => {
-  imgFilters.classList.remove('img-filters--inactive');
-};
-
-//нужно делать ререндер картинок при клике на фильтр
-
-// По умолчанию — фотографии в изначальном порядке с сервера.
-// Случайные — 10 случайных, не повторяющихся фотографий.
-// Обсуждаемые — фотографии, отсортированные в порядке убывания количества комментариев.
-
-const compareCommentsTotal = (postA, postB) => postB.comments.length - postA.comments.length;
-
 const Filters = {
   DEFAULT: () => originalData,
   RANDOM: (array) => {
@@ -37,6 +25,12 @@ const Filters = {
 };
 
 let currentFilter = Filters.DEFAULT;
+
+const showFilters = () => imgFilters.classList.remove('img-filters--inactive');
+
+function compareCommentsTotal (postA, postB) {
+  return postB.comments.length - postA.comments.length;
+}
 
 const swithCurrentFilter = (current) => {
   filtersBtns.forEach((btn) => {
