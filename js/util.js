@@ -1,3 +1,5 @@
+const ALERT_SHOW_TIME = 5000;
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -75,8 +77,6 @@ function checkSameSubstring (value) {
   const array = value.toLowerCase().split(/(\s+)/).filter((e) => e.trim().length > 0);
   return array.some((e, i, arr) => arr.indexOf(e) !== i);
 }
-
-const ALERT_SHOW_TIME = 5000;
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
