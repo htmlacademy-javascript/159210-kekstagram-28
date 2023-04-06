@@ -25,10 +25,7 @@ const reduceScale = () => {
   setNewScale(newValue);
 };
 
-const resetScale = () => {
-  setNewScale(DEFAULT_SCALE);
-};
-
+const resetScale = () => setNewScale(DEFAULT_SCALE);
 
 scaleSmaller.addEventListener('click', reduceScale);
 
