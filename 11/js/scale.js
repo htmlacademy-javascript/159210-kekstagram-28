@@ -5,13 +5,13 @@ const imgUploadPreview = document.querySelector('.img-upload__preview img');
 
 const STEP = 25,
   MAX_SCALE = 100,
-  MIN_SCALE = 0,
+  MIN_SCALE = 25,
   DEFAULT_SCALE = 100;
 
 scaleValue.value = MAX_SCALE;
 
 const setNewScale = (value) => {
-  imgUploadPreview.style.transform = value === MIN_SCALE ? `scale(${value})` : `scale(${value / 100})`;
+  imgUploadPreview.style.transform = `scale(${value / 100})`;
   scaleValue.value = `${value}%`;
 };
 
