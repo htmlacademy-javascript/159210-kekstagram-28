@@ -32,7 +32,7 @@ function compareCommentsTotal (postA, postB) {
   return postB.comments.length - postA.comments.length;
 }
 
-const swithCurrentFilter = (current) => {
+const switсhCurrentFilter = (current) => {
   filtersBtns.forEach((btn) => {
     btn.classList.remove('img-filters__button--active');
   });
@@ -44,7 +44,7 @@ imgFilters.addEventListener('click', (evt) => {
   if (currentBtn) {
     const currentFilterName = evt.target.id.split('-')[1].toUpperCase();
     currentFilter = Filters[currentFilterName];
-    swithCurrentFilter(currentBtn);
+    switсhCurrentFilter(currentBtn);
     debounce(
       () => renderPosts(currentFilter(originalData)),
       RERENDER_DELAY,
