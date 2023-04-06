@@ -120,5 +120,21 @@ function throttle(callback, delayBetweenFrames) {
   };
 }
 
+const getRandomNumsArray = (count, maxNum = count) => {
+  const newArray = [];
+  let newId = getRandomInteger(1, maxNum);
+
+  while (newArray.length < count) {
+    if (newArray.includes(newId)) {
+      newId = getRandomInteger(1, maxNum);
+    } else {
+      newArray.push(newId);
+    }
+  }
+
+  return newArray;
+};
+
 export { getRandomInteger, getRandomArrayElement, isEscapeKey,
-  checkStringLength, checkSameSubstring, showAlert, debounce, throttle };
+  checkStringLength, checkSameSubstring, showAlert, debounce, throttle,
+  getRandomNumsArray };
