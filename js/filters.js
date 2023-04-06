@@ -1,7 +1,6 @@
 import { originalData } from './api.js';
-import { getRandomNumsArray } from './create-data.js';
 import { renderPosts } from './create-miniatures.js';
-import { debounce } from './util.js';
+import { getRandomNumsArray, debounce } from './util.js';
 
 const imgFilters = document.querySelector('.img-filters');
 const filtersBtns = imgFilters.querySelectorAll('.img-filters__button');
