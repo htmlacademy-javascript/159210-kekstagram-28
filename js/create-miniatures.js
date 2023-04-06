@@ -1,4 +1,5 @@
 import { getData } from './api.js';
+import { showFilters } from './filters.js';
 import { showAlert } from './util.js';
 
 const picsContainer = document.querySelector('.pictures');
@@ -10,6 +11,7 @@ let postsArray;
 
 const renderPosts = (posts) => {
   postsArray = posts;
+  picsContainer.querySelectorAll('.picture').forEach((pic) => pic.remove());
   const postFragment = document.createDocumentFragment();
 
   posts.forEach(({ url, likes, comments }) => {
@@ -23,6 +25,6 @@ const renderPosts = (posts) => {
   picsContainer.appendChild(postFragment);
 };
 
-getData(renderPosts, showAlert);
+getData(renderPosts, showFilters, showAlert);
 
-export { postsArray };
+export { postsArray, renderPosts };
