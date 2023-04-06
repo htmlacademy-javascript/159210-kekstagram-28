@@ -44,7 +44,7 @@ const renderComments = (count) => {
 
     const p = document.createElement('p');
     p.classList.add('social__text');
-    p.innerText = `${commentsArray[i].message}`;
+    p.textContent = `${commentsArray[i].message}`;
 
     li.appendChild(img);
     li.appendChild(p);
