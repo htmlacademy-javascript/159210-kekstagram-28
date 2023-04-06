@@ -1,3 +1,5 @@
+const ALERT_SHOW_TIME = 5000;
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -76,8 +78,6 @@ function checkSameSubstring (value) {
   return array.some((e, i, arr) => arr.indexOf(e) !== i);
 }
 
-const ALERT_SHOW_TIME = 5000;
-
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
@@ -99,5 +99,26 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
+function debounce(callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+function throttle(callback, delayBetweenFrames) {
+  let lastTime = 0;
+
+  return (...rest) => {
+    const now = new Date();
+    if (now - lastTime >= delayBetweenFrames) {
+      callback.apply(this, rest);
+      lastTime = now;
+    }
+  };
+}
+
 export { getRandomInteger, getRandomArrayElement, isEscapeKey,
-  checkStringLength, checkSameSubstring, showAlert };
+  checkStringLength, checkSameSubstring, showAlert, debounce, throttle };

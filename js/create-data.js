@@ -61,13 +61,13 @@ const COMMENTS = [
   'Лица у людей на фотке перекошены, как будто их избивают.Как можно было поймать такой неудачный момент ? !'
 ];
 
-const getRandomIdArray = (count) => {
+const getRandomNumsArray = (count, maxNum = count) => {
   const newArray = [];
-  let newId = getRandomInteger(1, count);
+  let newId = getRandomInteger(1, maxNum);
 
   while (newArray.length < count) {
     if (newArray.includes(newId)) {
-      newId = getRandomInteger(1, count);
+      newId = getRandomInteger(1, maxNum);
     } else {
       newArray.push(newId);
     }
@@ -76,8 +76,8 @@ const getRandomIdArray = (count) => {
   return newArray;
 };
 
-const postIdArray = getRandomIdArray(POST_ID_COUNT);
-const commentIdArray = getRandomIdArray(COMMENT_ID_COUNT);
+const postIdArray = getRandomNumsArray(POST_ID_COUNT);
+const commentIdArray = getRandomNumsArray(COMMENT_ID_COUNT);
 
 const createComment = (count) => ({
   id: commentIdArray[count],
@@ -115,4 +115,4 @@ const createPostArray = () => {
   return newArray;
 };
 
-export { createPostArray };
+export { createPostArray, getRandomNumsArray };

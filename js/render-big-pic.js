@@ -1,6 +1,8 @@
 import { isEscapeKey } from './util.js';
 import { postsArray } from './create-miniatures.js';
 
+const START_COMMENTS_COUNT = 5;
+
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const social = bigPicture.querySelector('.social');
@@ -12,7 +14,6 @@ const descriptionPhoto = bigPicture.querySelector('.social__caption');
 const socialCommentCount = social.querySelector('.social__comment-count');
 const commentsLoader = social.querySelector('.comments-loader');
 
-const START_COMMENTS_COUNT = 5;
 let commentsShown = 0, commentsLeft = 0;
 let commentsArray = [];
 
