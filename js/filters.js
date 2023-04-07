@@ -12,13 +12,13 @@ const Filters = {
   DEFAULT: () => originalData,
   RANDOM: (array) => {
     const randomIds = getRandomNumsArray(COUNT_RENDER_RANDOM, array.length - 1);
-    const newArray = [];
+    const newList = [];
 
     randomIds.forEach((id) => {
       const newEntry = array.find((entry) => entry.id === id);
-      newArray.push(newEntry);
+      newList.push(newEntry);
     });
-    return newArray;
+    return newList;
   },
   DISCUSSED: (array) => array.slice().sort(compareCommentsTotal)
 };

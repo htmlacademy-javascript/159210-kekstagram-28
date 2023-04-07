@@ -7,10 +7,10 @@ const picTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-let postsArray;
+let postsList;
 
 const renderPosts = (posts) => {
-  postsArray = posts;
+  postsList = posts;
   picsContainer.querySelectorAll('.picture').forEach((pic) => pic.remove());
   const postFragment = document.createDocumentFragment();
 
@@ -27,4 +27,4 @@ const renderPosts = (posts) => {
 
 getData(renderPosts, showFilters, showAlert);
 
-export { postsArray, renderPosts };
+export { postsList, renderPosts };

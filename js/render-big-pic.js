@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { postsArray } from './create-miniatures.js';
+import { postsList } from './create-miniatures.js';
 
 const START_COMMENTS_COUNT = 5;
 
@@ -20,13 +20,13 @@ let commentsArray = [];
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeBigPic();
+    closeBigPicture();
   }
 };
 
 const onMouseClose = (evt) => {
   evt.preventDefault();
-  closeBigPic();
+  closeBigPicture();
 };
 
 const renderComments = (count) => {
@@ -88,7 +88,7 @@ const renderBigPic = ({url, likes, comments, description}) => {
   renderAllComments();
 };
 
-function openBigPic(url) {
+function openBigPicture(url) {
   renderBigPic(url);
 
   bigPicture.classList.remove('hidden');
@@ -99,7 +99,7 @@ function openBigPic(url) {
   commentsLoader.addEventListener('click', renderAllComments);
 }
 
-function closeBigPic() {
+function closeBigPicture() {
   commentsShown = 0;
   commentsLeft = 0;
 
@@ -117,8 +117,8 @@ function closeBigPic() {
 pictures.addEventListener('click', (evt) => {
   if(evt.target.closest('.picture')) {
     const url = String(evt.target.src).slice(String(evt.target.src).indexOf('photos'));
-    const thisPost = postsArray.filter((post) => post.url === url)[0];
+    const thisPost = postsList.filter((post) => post.url === url)[0];
     commentsArray = thisPost.comments;
-    openBigPic(thisPost);
+    openBigPicture(thisPost);
   }
 });
