@@ -121,18 +121,18 @@ function throttle(callback, delayBetweenFrames) {
 }
 
 const getRandomNumsArray = (count, maxNum = count) => {
-  const newArray = [];
+  const newList = [];
   let newId = getRandomInteger(1, maxNum);
 
-  while (newArray.length < count) {
-    if (newArray.includes(newId)) {
+  while (newList.length < count) {
+    if (newList.includes(newId)) {
       newId = getRandomInteger(1, maxNum);
     } else {
-      newArray.push(newId);
+      newList.push(newId);
     }
   }
 
-  return newArray;
+  return newList;
 };
 
 export { getRandomInteger, getRandomArrayElement, isEscapeKey,
