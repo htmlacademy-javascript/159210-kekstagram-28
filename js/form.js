@@ -3,6 +3,8 @@ import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
 import { sendData } from './api.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const imgUploadForm = document.querySelector('.img-upload__form');
 const uploadFileField = document.getElementById('upload-file');
 const imgEditForm = imgUploadForm.querySelector('.img-upload__overlay');
@@ -10,6 +12,7 @@ const imgUploadCancel = imgUploadForm.querySelector('.img-upload__cancel');
 const hashtagsField = imgUploadForm.querySelector('.text__hashtags');
 const descriptionField = imgUploadForm.querySelector('.text__description');
 const imgUploadBtn = imgUploadForm.querySelector('.img-upload__submit');
+const imgUploadPreview = imgUploadForm.querySelector('.img-upload__preview img');
 
 const modalCases = ['error', 'success'];
 
@@ -146,5 +149,14 @@ function openUploadForm() {
 }
 
 uploadFileField.addEventListener('change', () => {
+  const file = uploadFileField.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    imgUploadPreview.src = URL.createObjectURL(file);
+  }
+
   openUploadForm();
 });

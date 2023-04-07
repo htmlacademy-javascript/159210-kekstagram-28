@@ -1,7 +1,6 @@
 import { originalData } from './api.js';
-import { getRandomNumsArray } from './create-data.js';
 import { renderPosts } from './create-miniatures.js';
-import { debounce } from './util.js';
+import { getRandomNumsArray, debounce } from './util.js';
 
 const imgFilters = document.querySelector('.img-filters');
 const filtersBtns = imgFilters.querySelectorAll('.img-filters__button');
@@ -32,7 +31,7 @@ function compareCommentsTotal (postA, postB) {
   return postB.comments.length - postA.comments.length;
 }
 
-const swithCurrentFilter = (current) => {
+const switсhCurrentFilter = (current) => {
   filtersBtns.forEach((btn) => {
     btn.classList.remove('img-filters__button--active');
   });
@@ -44,7 +43,7 @@ imgFilters.addEventListener('click', (evt) => {
   if (currentBtn) {
     const currentFilterName = evt.target.id.split('-')[1].toUpperCase();
     currentFilter = Filters[currentFilterName];
-    swithCurrentFilter(currentBtn);
+    switсhCurrentFilter(currentBtn);
     debounce(
       () => renderPosts(currentFilter(originalData)),
       RERENDER_DELAY,
